@@ -14,3 +14,9 @@ function addNewTask() {
   }
   input = "";
 }
+
+function deleteTask() {
+  const btn = event.target.parentNode;
+  const row = btn.parentNode;
+  taskContainer.removeChild(row);
+}
