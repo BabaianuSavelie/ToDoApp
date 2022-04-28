@@ -27,3 +27,18 @@ body {
     max-height: 23rem;
     overflow: auto;
 }
+.item-animate{
+    animation: exitAnimation 500ms ease 0s 1 normal forwards;
+}
+
+@keyframes exitAnimation {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-250px);
+    }
+}

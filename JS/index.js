@@ -18,5 +18,16 @@ function addNewTask() {
 function deleteTask() {
   const btn = event.target.parentNode;
   const row = btn.parentNode;
-  taskContainer.removeChild(row);
+  btn.parentNode.classList.remove("item");
+  btn.parentNode.classList.toggle("item-animate");
+  setTimeout(function () {
+    taskContainer.removeChild(row);
+  }, 500);
+}
+
+function markAsFinished() {
+  const btn = event.target.parentNode;
+  const row = btn.parentNode;
+  let p = row.getElementById("todoItem");
+  console.log(p);
 }
