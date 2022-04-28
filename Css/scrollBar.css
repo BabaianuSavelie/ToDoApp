@@ -1,0 +1,12 @@
+.todos-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.todos-container::-webkit-scrollbar-thumb {
+    background-color: #dee2e6;
+    border-radius: 20px;
+}
+
+.task-container::-webkit-scrollbar-thumb:hover {
+    background-color: #ced4da;
+}

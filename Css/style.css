@@ -23,14 +23,6 @@ body {
 .task-container {
     height: 25rem;
 }
-
-/* .row{
-    border: 2px solid black;
-    padding: 10px;
-}
-.col{
-    border: 1px solid black;
-} */
 .todos-container {
     max-height: 23rem;
     overflow: auto;
