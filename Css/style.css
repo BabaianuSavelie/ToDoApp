@@ -13,6 +13,7 @@ body {
 
 .title {
     font-family: 'Ubuntu', sans-serif;
+    color: #4a4e69;
 }
 
 .task {
@@ -23,12 +24,22 @@ body {
 .task-container {
     height: 25rem;
 }
+#taskInput{
+    color: #6c757d;
+}
 .todos-container {
     max-height: 23rem;
     overflow: auto;
 }
+.todoTitle{
+    font-family: 'Ubuntu',sans-serif;
+    color: #6c757d;
+}
+.todoTitle:hover{
+    color: #343a40;
+}
 .item-animate{
-    animation: exitAnimation 500ms ease 0s 1 normal forwards;
+    animation: exitAnimation 300ms ease 0s 1 normal forwards;
 }
 
 @keyframes exitAnimation {

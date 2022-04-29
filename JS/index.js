@@ -22,7 +22,7 @@ function deleteTask() {
   btn.parentNode.classList.toggle("item-animate");
   setTimeout(function () {
     taskContainer.removeChild(row);
-  }, 500);
+  }, 300);
 }
 
 function markAsFinished() {
