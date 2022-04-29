@@ -1,7 +1,6 @@
 const addBtn = document.getElementById("addBtn");
 const taskContainer = document.getElementById("container");
 const template = document.getElementById("template");
-let tasks = [];
 
 function addNewTask() {
   let input = document.getElementById("taskInput").value;
@@ -12,7 +11,6 @@ function addNewTask() {
     taskItem.innerText = input;
     taskContainer.append(item);
   }
-  input = "";
 }
 
 function deleteTask() {
