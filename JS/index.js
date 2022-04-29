@@ -27,7 +27,8 @@ function deleteTask() {
 
 function markAsFinished() {
   const btn = event.target.parentNode;
-  const row = btn.parentNode;
-  let p = row.getElementById("todoItem");
+  const parent = btn.parentNode;
+  const p = (parent.querySelector("#todoItem").style.textDecoration =
+    "line-through");
   console.log(p);
 }
