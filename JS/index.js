@@ -8,7 +8,6 @@ const loadTasks = () => {
   tasks.forEach((task) => {
     createTaskView(task.task, task.completed);
   });
-  console.log(tasks);
 };
 
 window.onload = loadTasks();
@@ -22,18 +21,20 @@ function createTaskView(task, completed) {
 }
 
 function addNewTask() {
-  let input = document.getElementById("taskInput").value;
-  if (input == "") alert("You must write something");
+  let input = document.getElementById("taskInput");
+  if (input.value == "") alert("You must write something");
   else {
-    createTaskView(input);
-    storeToLocalStorage(input);
+    createTaskView(input.value);
+    storeToLocalStorage(input.value);
+    input.value = "";
+    console.log(input);
   }
 }
 
 function deleteTask(event) {
   const parent = event.parentNode.parentNode;
   const taskToRemove = parent.querySelector("#todoItem");
-  console.log(taskToRemove.textContent);
+
   parent.classList.toggle("item-animate");
   setTimeout(function () {
     taskContainer.removeChild(parent);
@@ -45,7 +46,7 @@ function markAsFinished(event) {
   const parent = event.parentNode.parentNode;
   const p = parent.querySelector("#todoItem");
   p.classList.toggle("completed");
-  console.log(p.textContent);
+
   let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
   tasks.forEach((task) => {
     if (task.task === p.textContent) {
@@ -70,6 +71,6 @@ function removeFromLocalStorage(inputTask) {
   tasks.forEach((task) => {
     if (task.task === inputTask) tasks.splice(tasks.indexOf(task), 1);
   });
-  console.log("----------------------------");
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
