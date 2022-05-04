@@ -38,9 +38,13 @@ body {
 .todoTitle:hover{
     color: #343a40;
 }
+.completed{
+    text-decoration: line-through;
+}
 .item-animate{
     animation: exitAnimation 300ms ease 0s 1 normal forwards;
 }
+
 
 @keyframes exitAnimation {
     0% {

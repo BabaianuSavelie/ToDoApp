@@ -39,12 +39,12 @@
         </div>
     </div>
     <template id="template">
-        <div class="row m-2 item">
+        <div class="row m-2">
             <div class="col col-8">
                 <p id="todoItem" class="todoTitle"></p>
             </div>
             <div class="col col-4">
-                <button class="btn btn-success btn-sm" onclick="markAsFinished()">Finished</button>
+                <button class="btn btn-success btn-sm" onclick="markAsFinished(this)">Finished</button>
                 <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Delete</button>
             </div>
         </div>

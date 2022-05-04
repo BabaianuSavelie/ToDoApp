@@ -6,16 +6,18 @@ const loadTasks = () => {
 
   let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
   tasks.forEach((task) => {
-    createTaskView(task.task);
+    createTaskView(task.task, task.completed);
   });
+  console.log(tasks);
 };
 
 window.onload = loadTasks();
 
-function createTaskView(task) {
+function createTaskView(task, completed) {
   const item = template.content.cloneNode(true).children[0];
   const taskItem = item.querySelector("#todoItem");
   taskItem.innerText = task;
+  taskItem.classList.toggle(completed ? "completed" : "not");
   taskContainer.append(item);
 }
 
@@ -29,22 +31,28 @@ function addNewTask() {
 }
 
 function deleteTask(event) {
-  const row = event.parentNode.parentNode;
-  const taskToRemove = row.querySelector("#todoItem");
-  console.log(row);
-  row.classList.remove("item");
-  row.classList.toggle("item-animate");
+  const parent = event.parentNode.parentNode;
+  const taskToRemove = parent.querySelector("#todoItem");
+  console.log(taskToRemove.textContent);
+  parent.classList.toggle("item-animate");
   setTimeout(function () {
-    taskContainer.removeChild(row);
-    removeFromLocalStorage(taskToRemove);
+    taskContainer.removeChild(parent);
+    removeFromLocalStorage(taskToRemove.textContent);
   }, 300);
 }
 
-function markAsFinished() {
-  const btn = event.target.parentNode;
-  const parent = btn.parentNode;
-  const p = (parent.querySelector("#todoItem").style.textDecoration =
-    "line-through");
+function markAsFinished(event) {
+  const parent = event.parentNode.parentNode;
+  const p = parent.querySelector("#todoItem");
+  p.classList.toggle("completed");
+  console.log(p.textContent);
+  let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+  tasks.forEach((task) => {
+    if (task.task === p.textContent) {
+      task.completed = !task.completed;
+    }
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function storeToLocalStorage(task) {
@@ -52,10 +60,16 @@ function storeToLocalStorage(task) {
     "tasks",
     JSON.stringify([
       ...JSON.parse(localStorage.getItem("tasks") || "[]"),
-      { task: task },
+      { task: task, completed: false },
     ])
   );
 }
-function removeFromLocalStorage(task) {
-  localStorage.clear();
+function removeFromLocalStorage(inputTask) {
+  let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+
+  tasks.forEach((task) => {
+    if (task.task === inputTask) tasks.splice(tasks.indexOf(task), 1);
+  });
+  console.log("----------------------------");
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
